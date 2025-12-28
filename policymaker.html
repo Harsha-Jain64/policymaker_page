@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-District Plus | Policymaker Module</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .glass-card { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border: 1px solid rgba(226, 232, 240, 0.8); }
+        .nav-active { border-right: 4px solid #2563eb; background: #eff6ff; color: #2563eb; }
+        .hover-scale { transition: transform 0.2s ease; }
+        .hover-scale:hover { transform: translateY(-2px); }
+    </style>
+</head>
+<body class="flex min-h-screen">
+
+    <aside class="w-64 bg-white border-r flex flex-col fixed h-full transition-all">
+        <div class="p-6">
+            <h1 class="text-2xl font-bold text-blue-700 flex items-center gap-2">
+                <i data-lucide="shield-check"></i> E-District+
+            </h1>
+            <p class="text-xs text-gray-500 font-medium tracking-widest mt-1 uppercase">Policymaker Suite</p>
+        </div>
+
+        <nav class="flex-1 px-4 space-y-2 mt-4">
+            <button onclick="showPage('overview')" id="btn-overview" class="w-full flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-50 nav-active">
+                <i data-lucide="layout-dashboard" class="w-5 h-5"></i> Overview
+            </button>
+            <button onclick="showPage('grievances')" id="btn-grievances" class="w-full flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-50">
+                <i data-lucide="message-square" class="w-5 h-5"></i> Grievance Insights
+            </button>
+            <button onclick="showPage('impact')" id="btn-impact" class="w-full flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-50">
+                <i data-lucide="trending-up" class="w-5 h-5"></i> Policy Impact
+            </button>
+            <button onclick="showPage('reports')" id="btn-reports" class="w-full flex items-center gap-3 px-4 py-3 text-gray-600 rounded-lg hover:bg-gray-50">
+                <i data-lucide="file-text" class="w-5 h-5"></i> Report Center
+            </button>
+        </nav>
+
+        <div class="p-4 border-t">
+            <div class="flex items-center gap-3 p-2">
+                <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold">JD</div>
+                <div>
+                    <p class="text-sm font-semibold">Jane Doe</p>
+                    <p class="text-xs text-gray-500">District Magistrate</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="ml-64 flex-1 p-8">
+        
+        <header class="flex justify-between items-center mb-8">
+            <div>
+                <h2 id="page-title" class="text-3xl font-bold text-gray-800">Policymaker Analytics Dashboard</h2>
+                <p class="text-gray-500">Real-time governance oversight and decision support.</p>
+            </div>
+            <div class="flex gap-4">
+                <select class="bg-white border rounded-lg px-4 py-2 text-sm shadow-sm outline-none">
+                    <option>All Districts</option>
+                    <option>North District</option>
+                    <option>South Block</option>
+                </select>
+                <div class="flex bg-white border rounded-lg p-1 shadow-sm">
+                    <button class="px-4 py-1 text-sm bg-blue-50 text-blue-600 rounded-md font-medium">30 Days</button>
+                    <button class="px-4 py-1 text-sm text-gray-500">90 Days</button>
+                </div>
+            </div>
+        </header>
+
+        <section id="page-overview" class="page-section space-y-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="glass-card p-6 rounded-2xl hover-scale">
+                    <div class="flex justify-between items-start">
+                        <div class="p-2 bg-blue-100 text-blue-600 rounded-lg"><i data-lucide="users"></i></div>
+                        <span class="text-green-500 text-xs font-bold flex items-center gap-1">↑ 12%</span>
+                    </div>
+                    <h3 class="text-3xl font-bold mt-4">4,280</h3>
+                    <p class="text-gray-500 text-sm">Total Grievances</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl hover-scale border-l-4 border-orange-400">
+                    <div class="flex justify-between items-start">
+                        <div class="p-2 bg-orange-100 text-orange-600 rounded-lg"><i data-lucide="alert-circle"></i></div>
+                        <span class="text-red-500 text-xs font-bold flex items-center gap-1">Critical</span>
+                    </div>
+                    <h3 class="text-3xl font-bold mt-4">142</h3>
+                    <p class="text-gray-500 text-sm">High Priority Issues</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl hover-scale">
+                    <div class="flex justify-between items-start">
+                        <div class="p-2 bg-green-100 text-green-600 rounded-lg"><i data-lucide="briefcase"></i></div>
+                    </div>
+                    <h3 class="text-3xl font-bold mt-4">24</h3>
+                    <p class="text-gray-500 text-sm">Active Schemes</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl hover-scale">
+                    <div class="flex justify-between items-start">
+                        <div class="p-2 bg-purple-100 text-purple-600 rounded-lg"><i data-lucide="smile"></i></div>
+                        <span class="text-blue-500 text-xs font-bold">Target 4.5</span>
+                    </div>
+                    <h3 class="text-3xl font-bold mt-4">4.2<span class="text-lg text-gray-400">/5</span></h3>
+                    <p class="text-gray-500 text-sm">Citizen Satisfaction</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="glass-card p-6 rounded-2xl">
+                    <h4 class="font-bold mb-4">Grievance Density Heatmap (Simulated)</h4>
+                    <div class="h-64 bg-slate-50 rounded-xl flex items-center justify-center border-2 border-dashed border-slate-200">
+                        <div class="text-center">
+                            <i data-lucide="map" class="w-12 h-12 text-slate-300 mx-auto mb-2"></i>
+                            <p class="text-slate-400 text-sm italic">Interactive District Heatmap Component</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl">
+                    <h4 class="font-bold mb-4">Volume Trends (Last 7 Days)</h4>
+                    <canvas id="overviewChart" height="150"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-grievances" class="page-section hidden space-y-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-card p-6 rounded-2xl col-span-1 text-center">
+                    <h4 class="font-bold mb-4">Category Distribution</h4>
+                    <canvas id="categoryChart"></canvas>
+                </div>
+                <div class="glass-card p-6 rounded-2xl col-span-2">
+                    <div class="flex justify-between items-center mb-6">
+                        <h4 class="font-bold">Recurring Issues & Crowd Priority</h4>
+                        <span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+                            <i data-lucide="flame" class="w-3 h-3"></i> Top 3 Priorities
+                        </span>
+                    </div>
+                    <table class="w-full text-left">
+                        <thead class="text-gray-400 text-xs uppercase tracking-wider">
+                            <tr class="border-b">
+                                <th class="pb-3">Grievance Type</th>
+                                <th class="pb-3">Location</th>
+                                <th class="pb-3">Public Support</th>
+                                <th class="pb-3 text-right">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm">
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="py-4 font-medium">Intermittent Power Outage</td>
+                                <td class="py-4">Sector 4, North Block</td>
+                                <td class="py-4"><span class="bg-blue-600 text-white text-[10px] px-2 py-0.5 rounded-full">Score: 94</span></td>
+                                <td class="py-4 text-right text-blue-600 font-semibold cursor-pointer">View Case</td>
+                            </tr>
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="py-4 font-medium">Water Pipeline Leakage</td>
+                                <td class="py-4">Vikas Nagar Ward 12</td>
+                                <td class="py-4"><span class="bg-blue-600 text-white text-[10px] px-2 py-0.5 rounded-full">Score: 88</span></td>
+                                <td class="py-4 text-right text-blue-600 font-semibold cursor-pointer">View Case</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-4 font-medium">Garbage Collection Delay</td>
+                                <td class="py-4">East Extension</td>
+                                <td class="py-4"><span class="bg-blue-400 text-white text-[10px] px-2 py-0.5 rounded-full">Score: 65</span></td>
+                                <td class="py-4 text-right text-blue-600 font-semibold cursor-pointer">View Case</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-impact" class="page-section hidden space-y-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass-card p-6 rounded-2xl border-t-4 border-green-500">
+                    <h5 class="font-bold">Swachh District Plan</h5>
+                    <p class="text-xs text-gray-400 mt-1">Target: Sanitation</p>
+                    <div class="mt-4 flex items-end gap-2">
+                        <span class="text-2xl font-bold text-green-600">82%</span>
+                        <span class="text-xs text-gray-500 mb-1">Coverage Achieved</span>
+                    </div>
+                    <div class="w-full bg-gray-100 h-2 rounded-full mt-2">
+                        <div class="bg-green-500 h-2 rounded-full" style="width: 82%"></div>
+                    </div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl col-span-2 bg-gradient-to-br from-blue-50 to-white border-blue-100">
+                    <div class="flex items-center gap-2 text-blue-700 font-bold mb-2">
+                        <i data-lucide="sparkles" class="w-5 h-5"></i> AI-Generated Policy Insight
+                    </div>
+                    <p class="text-gray-700 text-sm leading-relaxed italic">
+                        "Data shows a 15% rise in sanitation complaints in the South Block despite high coverage. We recommend re-allocating 5% of the 'Clean City' budget to increase waste collection frequency specifically in high-density wards for the next quarter."
+                    </p>
+                    <p class="mt-4 text-[10px] text-gray-400 uppercase tracking-widest">Prototype Demonstration Only</p>
+                </div>
+            </div>
+            <div class="glass-card p-8 rounded-2xl">
+                <h4 class="font-bold mb-6">Impact Analysis: Grievances (Before vs After Scheme)</h4>
+                <canvas id="impactChart" height="100"></canvas>
+            </div>
+        </section>
+
+        <section id="page-reports" class="page-section hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="glass-card p-6 rounded-2xl">
+                    <h4 class="font-bold mb-6">Report Parameters</h4>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="text-xs font-bold text-gray-400 block mb-1">SELECT DISTRICT</label>
+                            <select class="w-full border rounded-lg p-2 text-sm">
+                                <option>Central District</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold text-gray-400 block mb-1">DATE RANGE</label>
+                            <input type="date" class="w-full border rounded-lg p-2 text-sm mb-2" value="2025-11-01">
+                            <input type="date" class="w-full border rounded-lg p-2 text-sm" value="2025-11-30">
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold text-gray-400 block mb-1">REPORT TYPE</label>
+                            <div class="space-y-2">
+                                <label class="flex items-center gap-2 text-sm"><input type="checkbox" checked> Grievance Analysis</label>
+                                <label class="flex items-center gap-2 text-sm"><input type="checkbox"> Scheme Performance</label>
+                            </div>
+                        </div>
+                        <button class="w-full bg-blue-600 text-white py-3 rounded-xl font-bold mt-4 shadow-lg shadow-blue-200 hover:bg-blue-700 transition-colors">
+                            Generate Policy Report
+                        </button>
+                    </div>
+                </div>
+                <div class="lg:col-span-2 glass-card p-8 rounded-2xl bg-slate-50 border-dashed border-2">
+                    <div class="bg-white p-8 rounded shadow-sm border h-[500px] overflow-hidden relative">
+                        <div class="flex justify-between border-b pb-4 mb-6">
+                            <h2 class="font-bold text-xl">Monthly Governance Report</h2>
+                            <div class="text-right text-xs text-gray-400">Ref ID: E-DIST-2025-011</div>
+                        </div>
+                        <div class="space-y-6 opacity-60">
+                            <div class="h-4 bg-gray-200 rounded w-1/2"></div>
+                            <div class="grid grid-cols-3 gap-4">
+                                <div class="h-20 bg-gray-100 rounded"></div>
+                                <div class="h-20 bg-gray-100 rounded"></div>
+                                <div class="h-20 bg-gray-100 rounded"></div>
+                            </div>
+                            <div class="h-4 bg-gray-200 rounded w-full"></div>
+                            <div class="h-4 bg-gray-200 rounded w-full"></div>
+                            <div class="h-32 bg-gray-50 rounded w-full border border-dashed border-gray-200 flex items-center justify-center">
+                                Preview Dynamic Content
+                            </div>
+                        </div>
+                        <div class="absolute bottom-8 right-8 flex gap-3">
+                            <button class="bg-white border text-gray-600 px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2"><i data-lucide="download" class="w-4 h-4"></i> Excel</button>
+                            <button class="bg-red-500 text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2"><i data-lucide="file-type-2" class="w-4 h-4"></i> Download PDF</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Page Navigation Logic
+        function showPage(pageId) {
+            // Hide all sections
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            // Show selected section
+            document.getElementById('page-' + pageId).classList.remove('hidden');
+
+            // Update Page Title
+            const titles = {
+                'overview': 'Policymaker Analytics Dashboard',
+                'grievances': 'Grievance Analysis & Insights',
+                'impact': 'Policy & Scheme Performance',
+                'reports': 'Report Generation Center'
+            };
+            document.getElementById('page-title').innerText = titles[pageId];
+
+            // Toggle active menu button
+            document.querySelectorAll('nav button').forEach(btn => {
+                btn.classList.remove('nav-active');
+            });
+            document.getElementById('btn-' + pageId).classList.add('nav-active');
+        }
+
+        // CHARTS SETUP
+        const ctxOverview = document.getElementById('overviewChart').getContext('2d');
+        new Chart(ctxOverview, {
+            type: 'line',
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                datasets: [{
+                    label: 'Grievance Volume',
+                    data: [65, 59, 80, 81, 56, 40, 45],
+                    fill: true,
+                    borderColor: '#2563eb',
+                    backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                    tension: 0.4
+                }]
+            }
+        });
+
+        const ctxCategory = document.getElementById('categoryChart').getContext('2d');
+        new Chart(ctxCategory, {
+            type: 'doughnut',
+            data: {
+                labels: ['Water', 'Power', 'Road', 'Health', 'Other'],
+                datasets: [{
+                    data: [35, 25, 20, 10, 10],
+                    backgroundColor: ['#2563eb', '#3b82f6', '#60a5fa', '#93c5fd', '#d1e4ff'],
+                    borderWidth: 0
+                }]
+            },
+            options: { plugins: { legend: { position: 'bottom' } } }
+        });
+
+        const ctxImpact = document.getElementById('impactChart').getContext('2d');
+        new Chart(ctxImpact, {
+            type: 'bar',
+            data: {
+                labels: ['Zone A', 'Zone B', 'Zone C', 'Zone D', 'Zone E'],
+                datasets: [
+                    { label: 'Before Scheme', data: [120, 150, 140, 180, 100], backgroundColor: '#cbd5e1' },
+                    { label: 'After Scheme', data: [80, 90, 100, 110, 60], backgroundColor: '#22c55e' }
+                ]
+            }
+        });
+    </script>
+</body>
+</html>
